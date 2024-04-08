@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:technical_template/app/models/collection.dart';
+import 'package:technical_template/utils/app_routes.dart';
 
 class CollectionListWidget extends StatefulWidget {
   final List<Collection> list;
@@ -47,18 +48,25 @@ class _CollectionListState extends State<CollectionListWidget> {
                       itemCount: list.books.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Image.network(
-                                list.books[index].thumb,
-                                fit: BoxFit.fitWidth,
-                                scale: 1.0,
-                                width: 110,
-                                height: 160,
-                              )
-                            ],
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                AppRoutes.bookDetails,
+                                arguments: list.books[index]);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Image.network(
+                                  list.books[index].thumb,
+                                  fit: BoxFit.fitWidth,
+                                  scale: 1.0,
+                                  width: 110,
+                                  height: 160,
+                                )
+                              ],
+                            ),
                           ),
                         );
                       },

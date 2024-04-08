@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:technical_template/app/models/books.dart';
 
 class Collection {
-  final String name;
-  final String id;
-  final List<Book> books;
+  String name;
+  String id;
+  List<Book> books;
 
   Collection({required this.name, required this.id, required this.books});
+
+  factory Collection.newCollection() => Collection(name: '', id: '', books: []);
 
   Map<String, dynamic> toMap() {
     return {
